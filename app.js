@@ -5,7 +5,7 @@ firebase.initializeApp({
 
 var app_btn_allow = $('#app_btn_allow');
 var app_messaging;
-var client_domain;
+var client_url_subscribe;
 var client_token; //from site DB by client.id
 var client_firebase_token;//for notify by firebase google
 
@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function app_init() {
-    client_domain = helper_URL_getParameterByName('client_domain') || '';
+    client_url_subscribe = helper_URL_getParameterByName('client_url_subscribe') || '';
     client_token = helper_URL_getParameterByName('client_token') || '';
-    if (client_domain === '' || client_token === '') {
+    if (client_url_subscribe === '' || client_token === '') {
         showError('Invalid requests params');
     }
 }
@@ -95,7 +95,8 @@ function app_getToken() {
 // - send messages back to this app
 // - subscribe/unsubscribe the token from topics
 function app_sendTokenToServer(client_firebase_token) {
-    $.post('https://' + client_domain + '/api/notify/subscribe', {
+    console.log(client_url_subscribe);
+    $.post(client_url_subscribe, {
         client_token: client_token,
         client_firebase_token: client_firebase_token
     }).done(function (response) {
