@@ -30,7 +30,7 @@ function app_init() {}
 
         // Callback fired if Instance ID token is updated.
         app_messaging.onTokenRefresh(function () {
-            app_messaging.app_getToken()
+            app_messaging.getToken()
                     .then(function (refreshedToken) {
                         showError('Token refreshed.');
                         // Send Instance ID token to app server.
