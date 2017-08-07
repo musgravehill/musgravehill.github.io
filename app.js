@@ -1,21 +1,25 @@
-firebase.initializeApp({
-    messagingSenderId: '858298348971'
-});
 
 
-var bt_register = $('#register');
-var token = $('#token');
+
+
+
+var app_btn_allow = $('#app_btn_allow');
+var app_messaging;
 
 document.addEventListener('DOMContentLoaded', function () {
     app_init();
 });
 
 function app_init() {
+    firebase.initializeApp({
+        messagingSenderId: '858298348971'
+    });
+
     if (window.location.protocol === 'https:' &&
             'Notification' in window &&
             'serviceWorker' in navigator
             ) {
-        var messaging = firebase.messaging();
+        app_messaging = firebase.messaging();
 
         // already granted
         if (Notification.permission === 'granted') {
@@ -23,13 +27,13 @@ function app_init() {
         }
 
         // get permission on subscribe only once
-        bt_register.on('click', function () {
+        app_btn_allow.on('click', function () {
             app_getToken();
         });
 
         // Callback fired if Instance ID token is updated.
-        messaging.onTokenRefresh(function () {
-            messaging.app_getToken()
+        app_messaging.onTokenRefresh(function () {
+            app_messaging.app_getToken()
                     .then(function (refreshedToken) {
                         showError('Token refreshed.');
                         // Send Instance ID token to app server.
@@ -57,11 +61,11 @@ function app_init() {
 }
 
 function app_getToken() {
-    messaging.requestPermission()
+    app_messaging.requestPermission()
             .then(function () {
                 // Get Instance ID token. Initially this makes a network call, once retrieved
                 // subsequent calls to getToken will return from cache.
-                messaging.app_getToken()
+                app_messaging.app_getToken()
                         .then(function (currentToken) {
                             if (currentToken) {
                                 app_sendTokenToServer(currentToken);
