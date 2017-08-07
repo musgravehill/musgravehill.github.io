@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function app_init() {
+    client_protocol = helper_URL_getParameterByName('client_protocol') || '';
     client_domain = helper_URL_getParameterByName('client_domain') || '';
     client_token = helper_URL_getParameterByName('client_token') || '';
-    client_protocol = helper_URL_getParameterByName('client_protocol') || '';
     if (client_protocol === '' || client_domain === '' || client_token === '') {
         showError('Invalid requests params');
     }
