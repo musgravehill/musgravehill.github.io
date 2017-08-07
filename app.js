@@ -17,7 +17,7 @@ function app_init() {
     client_url_subscribe = helper_URL_getParameterByName('client_url_subscribe') || '';
     client_token = helper_URL_getParameterByName('client_token') || '';
     if (client_url_subscribe === '' || client_token === '') {
-        showError('Invalid requests params');
+        app_showError('Invalid requests params');
     }
 }
 
@@ -41,28 +41,28 @@ if (window.location.protocol === 'https:' &&
     app_messaging.onTokenRefresh(function () {
         app_messaging.getToken()
                 .then(function (refreshedToken) {
-                    showError('Token refreshed.');
+                    app_showError('Token refreshed.');
                     // Send Instance ID token to app server.
                     app_sendTokenToServer(refreshedToken);
                 })
                 .catch(function (error) {
-                    showError('Unable to retrieve refreshed token.', error);
+                    app_showError('Unable to retrieve refreshed token.', error);
                 });
     });
 
 } else {
     if (window.location.protocol !== 'https:') {
-        showError('Is not from HTTPS');
+        app_showError('Is not from HTTPS');
     } else if (!('Notification' in window)) {
-        showError('Notification not supported');
+        app_showError('Notification not supported');
     } else if (!('serviceWorker' in navigator)) {
-        showError('ServiceWorker not supported');
+        app_showError('ServiceWorker not supported');
     }
 
-    showError('This browser does not support desktop notification.');
-    showError('Is HTTPS', window.location.protocol === 'https:');
-    showError('Support Notification', 'Notification' in window);
-    showError('Support ServiceWorker', 'serviceWorker' in navigator);
+    app_showError('This browser does not support desktop notification.');
+    app_showError('Is HTTPS', window.location.protocol === 'https:');
+    app_showError('Support Notification', 'Notification' in window);
+    app_showError('Support ServiceWorker', 'serviceWorker' in navigator);
 }
 
 
@@ -76,16 +76,16 @@ function app_getToken() {
                             if (client_firebase_token) {
                                 app_sendTokenToServer(client_firebase_token);
                             } else {
-                                showError('No Instance ID token available. Request permission to generate one.');
+                                app_showError('No Instance ID token available. Request permission to generate one.');
                             }
                         })
                         .catch(function (error) {
-                            showError('An error occurred while retrieving token.', error);
+                            app_showError('An error occurred while retrieving token.', error);
 
                         });
             })
             .catch(function (error) {
-                showError('Unable to get permission to notify.', error);
+                app_showError('Unable to get permission to notify.', error);
             });
 }
 
@@ -100,6 +100,7 @@ function app_sendTokenToServer(client_firebase_token) {
         client_token: client_token,
         client_firebase_token: client_firebase_token
     }).done(function (response) {
+        app_showInfo('Готово! Можно закрыть страницу.');
         console.log('SEND TOKEN TO SERVER ' + client_firebase_token);
     }).fail(function () {
         console.error('ERROR NOT SEND TOKEN TO SERVER ' + client_firebase_token);
@@ -107,7 +108,7 @@ function app_sendTokenToServer(client_firebase_token) {
 
 }
 
-function showError(error, error_data) {
+function app_showError(error, error_data) {
     if (typeof error_data !== "undefined") {
         console.error(error + ' ', error_data);
     } else {
@@ -120,6 +121,12 @@ function showError(error, error_data) {
     alert.show();
     alert_message.html(error);
 }
+function app_showInfo(info) {
+    console.warn(info);
+    $('#info').show();
+    $('#info-message').html(info);
+}
+
 
 
 
