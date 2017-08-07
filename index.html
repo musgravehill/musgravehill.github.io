@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Оповещения</title>
+        <link rel="shortcut icon" href="favicon.png">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+        <!-- Import Google Icon Font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    
-    <title>Musgravehill.github.io by musgravehill</title>
-  </head>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-  <body>
-   
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Musgravehill.github.io</h1>
-            <h2>test page</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <div id="no-downloads">
-        <span class="inner">
-        </span>
-      </div>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-       
-
-
-<p>
-  Тестовая страница
-</p>
-
-</section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            musgravehill
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </footer>
-
-    </div>
-
-    
-  </body>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+        <style type="text/css">
+            #alert,
+            #info
+            {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <h3 class="brand-logo">Оповещения</h3>
+                <ul class="right hide-on-med-and-down desktop-header-links">                    
+                    <li><a href="chrome://settings/content/notifications">настройки</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="section no-pad-bot" id="index-banner">
+            <div class="container">
+                <br>
+                <br>
+                <div class="card-panel deep-orange darken-1 white-text z-depth-2" id="alert">
+                    <i class="material-icons left deep-orange-text text-darken-4">warning</i>
+                    <strong>Error</strong>
+                    <em id="alert-message"></em>
+                </div>
+                <div class="card-panel green darken-1 white-text z-depth-2" id="info">
+                    <i class="material-icons left green-text text-darken-4">info</i>
+                    <span id="info-message"></span>
+                </div>
+                <div class="row center">
+                    <button type="button" class="btn-large waves-effect waves-light orange" id="register"><i class="material-icons left">vpn_key</i> Получать оповещения</button>
+                </div>
+            </div>
+        </main>        
+        <script type="text/javascript" src="//www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+        <script src="app.js"></script>
+    </body>
 </html>
+

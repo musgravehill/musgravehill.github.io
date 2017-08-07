@@ -1,0 +1,10 @@
+ 
+
+
+Ключ сервера   AAAAx9aRdas:APA91bHC3uKkCfSmsTdlOPjo5mqS26dFGCIn3wbMMf16g18ITm2YgvQNcJSgy7AgOaLLhTOHaqMe_RNgL5GbhlpaAJTlsXbSxgzmn_eOBP9AyF9LyJmIRQR8HTgZJpv-dKXrh-xXk_Cy
+
+Устаревший ключ сер   AIzaSyBvmxgEqRTm_GjqQz_S770tXxzHrxYeERo
+
+Идентификатор отправителя  858298348971
+
+
