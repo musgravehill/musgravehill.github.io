@@ -1,7 +1,7 @@
 
-
-
-
+firebase.initializeApp({
+    messagingSenderId: '858298348971'
+});
 
 var app_btn_allow = $('#app_btn_allow');
 var app_messaging;
@@ -10,10 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     app_init();
 });
 
-function app_init() {
-    firebase.initializeApp({
-        messagingSenderId: '858298348971'
-    });
+function app_init() {}
 
     if (window.location.protocol === 'https:' &&
             'Notification' in window &&
@@ -58,7 +55,7 @@ function app_init() {
         showError('Support Notification', 'Notification' in window);
         showError('Support ServiceWorker', 'serviceWorker' in navigator);
     }
-}
+
 
 function app_getToken() {
     app_messaging.requestPermission()
