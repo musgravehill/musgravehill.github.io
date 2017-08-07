@@ -96,7 +96,7 @@ function app_getToken() {
 // - send messages back to this app
 // - subscribe/unsubscribe the token from topics
 function app_sendTokenToServer(client_firebase_token) {
-    $.post('http://' + client_domain + '/pushnotify/subscribe', {
+    $.post(client_domain + '/api/notify/subscribe', {
         client_token: client_token,
         client_firebase_token: client_firebase_token
     }).done(function (response) {
