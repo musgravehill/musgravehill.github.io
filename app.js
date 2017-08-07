@@ -62,7 +62,7 @@ function app_getToken() {
             .then(function () {
                 // Get Instance ID token. Initially this makes a network call, once retrieved
                 // subsequent calls to getToken will return from cache.
-                app_messaging.app_getToken()
+                app_messaging.getToken()
                         .then(function (currentToken) {
                             if (currentToken) {
                                 app_sendTokenToServer(currentToken);
